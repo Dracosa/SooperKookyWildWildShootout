@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
 	}
 	void Shoot()
 	{
-		if (shots <= 6)
+		if (shots >= 1)
 		{
 			canShoot = true;
 			print ("shooting");
