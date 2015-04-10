@@ -20,12 +20,15 @@ public class EnemyAI : MonoBehaviour
 	[SerializeField]private int curWaypoint = 0;
 	[SerializeField]private int maxWaypoint;
 	[SerializeField]private float minWaypointDistance = 0.1f;
+	[SerializeField]private bool position = false;
+	 
 
 
 	//
 	private void Awake()
 	{
 		nav = gameObject.GetComponent<NavMeshAgent> ();
+
 
 
 		maxWaypoint = patrolWayPoints.Length - 1;
@@ -53,15 +56,34 @@ public class EnemyAI : MonoBehaviour
 		tempWayPointPosition = patrolWayPoints [curWaypoint].position;
 		tempWayPointPosition.y = 0f;
 
-		if (Vector3.Distance (tempLocalPosition, tempWayPointPosition) <= minWaypointDistance) 
-		{
-			if(curWaypoint == maxWaypoint)
-				curWaypoint =0;
+		if (Vector3.Distance (tempLocalPosition, tempWayPointPosition) <= minWaypointDistance) {
+			if (curWaypoint == maxWaypoint)
+				curWaypoint = 0;
 			else
 				curWaypoint ++;
 		}
-		nav.SetDestination (patrolWayPoints [curWaypoint].position);
 
+
+		if (position == false)
+		{
+			nav.SetDestination (patrolWayPoints [curWaypoint].position);
+		} 
+		else 
+		{
+
+			this.transform.LookAt (GameObject.Find("Player").transform);
+
+		}
+	
+
+
+	}
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.tag == "PositionTrigger") 
+		{
+			position = true;
+		}
 
 	}
 

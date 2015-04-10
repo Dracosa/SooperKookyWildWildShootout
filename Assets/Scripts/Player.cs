@@ -79,8 +79,8 @@ public class Player : MonoBehaviour
 		{
 			Debug.DrawRay(ray.origin, hit.point);
 			//enemyScript.health --;
-			Destroy(GameObject.Find (hit.rigidbody.gameObject.name));
-			kills ++;
+			//Destroy(GameObject.Find (hit.rigidbody.gameObject.name));
+
 		}
 	}
 	void Reloading()
@@ -96,8 +96,12 @@ public class Player : MonoBehaviour
 	}
 	void Crouch()
 	{
-		if (Input.GetKeyDown (KeyCode.LeftShift)) {
+		if (Input.GetKeyDown (KeyCode.LeftShift)) 
+		{
+			canShoot = false;
 			this.transform.localScale = new Vector3 (0.5f, 0.25f, 0.5f);
+
+
 		} 
 		else if (Input.GetKeyUp (KeyCode.LeftShift)) 
 		{
@@ -115,5 +119,19 @@ public class Player : MonoBehaviour
 			Enemy3.SetActive(true);
 		}
 	}
+
+	void OnTriggerEnter(Collider other)
+	{
+		if (other.tag == "Bullet") 
+		{
+			print ("You got hit!");
+			health --;
+			if(health <=0)
+			{
+				Destroy(this.gameObject);
+			}
+		}
+	}
+
 
 }

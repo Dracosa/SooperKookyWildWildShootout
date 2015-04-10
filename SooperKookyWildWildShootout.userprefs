@@ -2,9 +2,10 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player.cs">
     <Files>
-      <File FileName="Assets\Scripts\EnemyAI.cs" Line="23" Column="2" />
-      <File FileName="Assets\Scripts\Player.cs" Line="115" Column="10" />
-      <File FileName="Assets\Scripts\Enemy.cs" Line="34" Column="27" />
+      <File FileName="Assets\Scripts\EnemyAI.cs" Line="85" Column="20" />
+      <File FileName="Assets\Scripts\Player.cs" Line="23" Column="3" />
+      <File FileName="Assets\Scripts\Enemy.cs" Line="36" Column="1" />
+      <File FileName="Assets\Scripts\EnemyBullet.cs" Line="19" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
