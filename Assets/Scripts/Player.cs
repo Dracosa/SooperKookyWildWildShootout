@@ -99,13 +99,13 @@ public class Player : MonoBehaviour
 		if (Input.GetKeyDown (KeyCode.LeftShift)) 
 		{
 			canShoot = false;
-			this.transform.localScale = new Vector3 (0.5f, 0.25f, 0.5f);
+			this.transform.localScale = new Vector3 (3f, 1.5f, 3f);
 
 
 		} 
 		else if (Input.GetKeyUp (KeyCode.LeftShift)) 
 		{
-			this.transform.localScale = new Vector3 (0.5f, .5f, 0.5f);
+			this.transform.localScale = new Vector3 (3f, 3f, 3f);
 		}
 	}
 	void EnemyCount()
