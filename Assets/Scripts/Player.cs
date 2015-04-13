@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
 	{
 		
 
-		if (Input.GetKeyDown (KeyCode.R))
+		if (Input.GetMouseButtonDown (1))
 		{
 			Reloading ();
 		}
@@ -126,6 +126,7 @@ public class Player : MonoBehaviour
 		{
 			print ("You got hit!");
 			health --;
+			updater2.UpdateHealth(health);
 			if(health <=0)
 			{
 				Destroy(this.gameObject);
