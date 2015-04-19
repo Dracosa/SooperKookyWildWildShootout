@@ -17,20 +17,24 @@ public class Player : MonoBehaviour
 	[SerializeField]private Enemy enemyScript;
 	private GameObject Enemy2;
 	private GameObject Enemy3;
+	private GameObject Enemy4;
 
+	private Animator Anim = null;
 
 	void Start()
 	{
 		Enemy2 = GameObject.Find ("Enemy2");
 		Enemy3 = GameObject.Find ("Enemy3");
+		Enemy4 = GameObject.Find ("Enemy4");
 		Enemy2.SetActive (false);
 		Enemy3.SetActive (false);
+		Enemy4.SetActive (false);
 		guiUpdater = GameObject.Find ("ShotText");
 		guiUpdater2 = GameObject.Find ("HealthText");
 		Enemy = GameObject.Find ("Enemy");
 
 		enemyScript = Enemy.GetComponent<Enemy> ();
-
+		Anim = this.GetComponent<Animator>();
 		updater = guiUpdater.GetComponentInParent<GUIUpdater> ();
 		updater2 = guiUpdater2.GetComponentInParent<GUIUpdater> ();
 	}
@@ -52,6 +56,7 @@ public class Player : MonoBehaviour
 		}
 		Crouch ();
 		EnemyCount ();
+		Move ();
 	}
 	void Shoot()
 	{
@@ -99,13 +104,13 @@ public class Player : MonoBehaviour
 		if (Input.GetKeyDown (KeyCode.LeftShift)) 
 		{
 			canShoot = false;
-			this.transform.localScale = new Vector3 (3f, 1.5f, 3f);
+			this.transform.localScale = new Vector3 (5f, 2.5f, 5f);
 
 
 		} 
 		else if (Input.GetKeyUp (KeyCode.LeftShift)) 
 		{
-			this.transform.localScale = new Vector3 (3f, 3f, 3f);
+			this.transform.localScale = new Vector3 (5f, 5f, 5f);
 		}
 	}
 	void EnemyCount()
@@ -133,6 +138,14 @@ public class Player : MonoBehaviour
 			}
 		}
 	}
+	void Move()
+	{
+		if (kills == 3) 
+		{
+			Anim.SetBool("Walk1",true);
 
+			Enemy4.SetActive(true);
+		}
+	}
 
 }
