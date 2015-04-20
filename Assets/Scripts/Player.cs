@@ -18,7 +18,13 @@ public class Player : MonoBehaviour
 	private GameObject Enemy2;
 	private GameObject Enemy3;
 	private GameObject Enemy4;
-
+	private GameObject Enemy5;
+	private GameObject Enemy6;
+	private GameObject Enemy7;
+	private GameObject Enemy8;
+	private GameObject Enemy9;
+	private GameObject Enemy10;
+	private GameObject Enemy11;
 	private Animator Anim = null;
 
 	void Start()
@@ -26,9 +32,23 @@ public class Player : MonoBehaviour
 		Enemy2 = GameObject.Find ("Enemy2");
 		Enemy3 = GameObject.Find ("Enemy3");
 		Enemy4 = GameObject.Find ("Enemy4");
+		Enemy5 = GameObject.Find ("Enemy5");
+		Enemy6 = GameObject.Find ("Enemy6");
+		Enemy7 = GameObject.Find ("Enemy7");
+		Enemy8 = GameObject.Find ("Enemy8");
+		Enemy9 = GameObject.Find ("Enemy9");
+		Enemy10 = GameObject.Find ("Enemy10");
+		Enemy11 = GameObject.Find ("Enemy11");
 		Enemy2.SetActive (false);
 		Enemy3.SetActive (false);
 		Enemy4.SetActive (false);
+		Enemy5.SetActive (false);
+		Enemy6.SetActive (false);
+		Enemy7.SetActive (false);
+		Enemy8.SetActive (false);
+		Enemy9.SetActive (false);
+		Enemy10.SetActive (false);
+		Enemy11.SetActive (false);
 		guiUpdater = GameObject.Find ("ShotText");
 		guiUpdater2 = GameObject.Find ("HealthText");
 		Enemy = GameObject.Find ("Enemy");
@@ -123,6 +143,11 @@ public class Player : MonoBehaviour
 		{
 			Enemy3.SetActive(true);
 		}
+		if (kills == 5) 
+		{
+			Enemy6.SetActive(true);
+			Enemy7.SetActive(true);
+		}
 	}
 
 	void OnTriggerEnter(Collider other)
@@ -143,8 +168,23 @@ public class Player : MonoBehaviour
 		if (kills == 3) 
 		{
 			Anim.SetBool("Walk1",true);
-
+			Anim.StopPlayback();
 			Enemy4.SetActive(true);
+			Enemy5.SetActive(true);
+		}
+		if (kills == 7) 
+		{
+			Anim.SetBool("Walk2",true);
+			Anim.StopPlayback();
+			Enemy8.SetActive (true);
+			Enemy9.SetActive (true);
+			Enemy10.SetActive (true);
+			Enemy11.SetActive (true);
+		}
+		if (kills == 11) 
+		{
+			Anim.SetBool("Walk3",true);
+			Anim.StopPlayback();
 		}
 	}
 
