@@ -162,6 +162,14 @@ public class Player : MonoBehaviour
 				Destroy(this.gameObject);
 			}
 		}
+		if (other.tag == "EnemySpawn") 
+		{
+			Enemy8.SetActive (true);
+			Enemy9.SetActive (true);
+			Enemy10.SetActive (true);
+			Enemy11.SetActive (true);
+
+		}
 	}
 	void Move()
 	{
@@ -176,10 +184,7 @@ public class Player : MonoBehaviour
 		{
 			Anim.SetBool("Walk2",true);
 			Anim.StopPlayback();
-			Enemy8.SetActive (true);
-			Enemy9.SetActive (true);
-			Enemy10.SetActive (true);
-			Enemy11.SetActive (true);
+
 		}
 		if (kills == 11) 
 		{
