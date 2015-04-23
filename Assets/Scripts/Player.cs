@@ -4,28 +4,30 @@ using System.Collections;
 public class Player : MonoBehaviour 
 {
 	[SerializeField]private int health = 5;
-	[SerializeField]private int damage = 1;
 	[SerializeField]private int shots = 6;
-					public int kills = 0;
-	[SerializeField]private bool reloading = false;
-	[SerializeField]private bool canShoot = false;
+	[SerializeField]private GUIUpdater updater;
+	[SerializeField]private GUIUpdater updater2;
+	[SerializeField]private Enemy enemyScript;
+	[SerializeField]private GameObject Enemy2;
+	[SerializeField]private GameObject Enemy3;
+	[SerializeField]private GameObject Enemy4;
+	[SerializeField]private GameObject Enemy5;
+	[SerializeField]private GameObject Enemy6;
+	[SerializeField]private GameObject Enemy7;
+	[SerializeField]private GameObject Enemy8;
+	[SerializeField]private GameObject Enemy9;
+	[SerializeField]private GameObject Enemy10;
+	[SerializeField]private GameObject Enemy11;
+	[SerializeField]private Animator Anim = null;
+	public int kills = 0;
+	public Camera mainCamera;
+	public GameObject hitImage;
+	public static bool canReload = false;
+	public GameObject Enemy;
+	public static bool canShoot = true;
 	public GameObject guiUpdater;
 	public GameObject guiUpdater2;
-	private GUIUpdater updater;
-	private GUIUpdater updater2;
-	public GameObject Enemy;
-	[SerializeField]private Enemy enemyScript;
-	private GameObject Enemy2;
-	private GameObject Enemy3;
-	private GameObject Enemy4;
-	private GameObject Enemy5;
-	private GameObject Enemy6;
-	private GameObject Enemy7;
-	private GameObject Enemy8;
-	private GameObject Enemy9;
-	private GameObject Enemy10;
-	private GameObject Enemy11;
-	private Animator Anim = null;
+
 
 	void Start()
 	{
@@ -64,15 +66,33 @@ public class Player : MonoBehaviour
 
 		if (Input.GetMouseButtonDown (1))
 		{
-			Reloading ();
+			if(canReload)
+			{
+				Reloading ();
+
+			}
+
 		}
 
 		if (Input.GetMouseButtonDown (0)) 
 		{
 
+			if(canReload == false)
+			{
+				
 				Shoot ();
 				Shooting();
+
+			}
 				
+		}
+		if (shots >= 1) 
+		{
+			canShoot = true;
+		} 
+		else if (shots <= 0) 
+		{
+			canShoot = false;
 		}
 		Crouch ();
 		EnemyCount ();
@@ -80,19 +100,19 @@ public class Player : MonoBehaviour
 	}
 	void Shoot()
 	{
-		if (shots >= 1)
+		if (canShoot)
 		{
-			canShoot = true;
+
 			print ("shooting");
 			shots--;
 			updater.UpdateShot (shots);
 
 		}
-		else if(shots <= 0)
+		if (canReload) 
 		{
 			canShoot = false;
-			//Reloading();
 		}
+
 	}
 	void Shooting()
 	{
@@ -103,18 +123,27 @@ public class Player : MonoBehaviour
 		if (Physics.Raycast (ray, out hit))
 		{
 			Debug.DrawRay(ray.origin, hit.point);
+			if(canShoot)
+			{
+				GameObject decal =  Instantiate(Resources.Load ("Decal")) as GameObject;
+				decal.transform.position = hit.point;
+				decal.transform.eulerAngles =  mainCamera.transform.eulerAngles;
+				Destroy (decal,1);
+			}
+
 			//enemyScript.health --;
+
 			//Destroy(GameObject.Find (hit.rigidbody.gameObject.name));
 
 		}
 	}
 	void Reloading()
 	{
-		reloading = true;
+
 
 		shots = 6;
 		updater.UpdateShot (shots);
-		reloading = false;
+
 
 
 
@@ -124,12 +153,15 @@ public class Player : MonoBehaviour
 		if (Input.GetKeyDown (KeyCode.LeftShift)) 
 		{
 			canShoot = false;
+			canReload = true;
 			this.transform.localScale = new Vector3 (5f, 2.5f, 5f);
 
 
 		} 
 		else if (Input.GetKeyUp (KeyCode.LeftShift)) 
 		{
+			canReload = false;
+			canShoot = true;
 			this.transform.localScale = new Vector3 (5f, 5f, 5f);
 		}
 	}
@@ -155,11 +187,13 @@ public class Player : MonoBehaviour
 		if (other.tag == "Bullet") 
 		{
 			print ("You got hit!");
+			hitImage.GetComponent<YouGotHit>().GetHit();
 			health --;
 			updater2.UpdateHealth(health);
 			if(health <=0)
 			{
 				Destroy(this.gameObject);
+				Application.LoadLevel("GameOver");
 			}
 		}
 		if (other.tag == "EnemySpawn") 

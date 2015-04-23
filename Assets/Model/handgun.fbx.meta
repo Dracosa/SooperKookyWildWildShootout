@@ -1,0 +1,124 @@
+fileFormatVersion: 2
+guid: fa74b54ac1d35894da5f90afe8590f59
+timeCreated: 1429828374
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: hand
+    100002: //RootNode
+    100004: index_1
+    100006: index_2
+    100008: index_base
+    100010: index_tip
+    100012: magnum:polySurface8
+    100014: magnum_chamber_joint
+    100016: magnum_joint
+    100018: magnum_mid_joint
+    100020: magnum_pin_joint
+    100022: middle_1
+    100024: middle_2
+    100026: middle_base
+    100028: middle_tip
+    100030: pinkie_1
+    100032: pinkie_2
+    100034: pinkie_base
+    100036: pinkie_tip
+    100038: ring_1
+    100040: ring_2
+    100042: ring_base
+    100044: ring_tip
+    100046: thumb_base
+    100048: thumb_mid
+    100050: thumb_tip
+    100052: wrist
+    400000: hand
+    400002: //RootNode
+    400004: index_1
+    400006: index_2
+    400008: index_base
+    400010: index_tip
+    400012: magnum:polySurface8
+    400014: magnum_chamber_joint
+    400016: magnum_joint
+    400018: magnum_mid_joint
+    400020: magnum_pin_joint
+    400022: middle_1
+    400024: middle_2
+    400026: middle_base
+    400028: middle_tip
+    400030: pinkie_1
+    400032: pinkie_2
+    400034: pinkie_base
+    400036: pinkie_tip
+    400038: ring_1
+    400040: ring_2
+    400042: ring_base
+    400044: ring_tip
+    400046: thumb_base
+    400048: thumb_mid
+    400050: thumb_tip
+    400052: wrist
+    2300000: magnum:polySurface8
+    3300000: magnum:polySurface8
+    4300000: magnum:polySurface8
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

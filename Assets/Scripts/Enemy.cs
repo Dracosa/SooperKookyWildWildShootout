@@ -4,17 +4,23 @@ using System.Collections;
 public class Enemy : MonoBehaviour {
 
 	public int health = 1;
+
 	[SerializeField]private Player playerScript;
 	[SerializeField]private GameObject bullet;
 	[SerializeField]private GameObject bulletSpawn;
 	[SerializeField]private  int WaitTime = 5;
 	[SerializeField]private bool canShoot = true;
+	[SerializeField]private GUIUpdater updater;
+
+	public GameObject guiUpdater;
+
 
 	void Start () 
 	{
 		playerScript = GameObject.Find ("Player").GetComponent<Player> ();
 
-
+		guiUpdater = GameObject.Find ("KillsText");
+		updater = guiUpdater.GetComponentInParent<GUIUpdater> ();
 	}
 
 	void Update () 
@@ -34,22 +40,28 @@ public class Enemy : MonoBehaviour {
 	IEnumerator Shooting()
 	{
 		Instantiate (bullet, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
+		GameObject muzzle = Instantiate (Resources.Load ("GunMuzzle")) as GameObject;
+		muzzle.transform.position = bulletSpawn.transform.position;
+		Destroy (muzzle, 1);
 		canShoot = false;
 		yield return new WaitForSeconds (WaitTime);
 		canShoot = true;
 	}
 	void OnMouseDown()
 	{
-		
-		health --;
-		
-		if (health == 0)
+		if (Player.canReload == false)
 		{
-			playerScript.kills ++;
-			Destroy(this.gameObject);
+			health --;
+		
+			if (health == 0) 
+			{
+				playerScript.kills ++;
+				Destroy (this.gameObject);
+				updater.UpdateKills (playerScript.kills);
 			
 			
-		}
+			}
 
+		}
 	}
 }

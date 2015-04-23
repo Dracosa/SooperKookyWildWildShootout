@@ -4,7 +4,7 @@ using System.Collections;
 public class EnemyBullet : MonoBehaviour 
 {
 
-	[SerializeField]private float speed = 10f;
+	[SerializeField]private float speed = 20f;
 	[SerializeField]private string m_BulletKillZone = "BulletKillZone";
 	[SerializeField]private string m_PlayerName = "Player";
 
