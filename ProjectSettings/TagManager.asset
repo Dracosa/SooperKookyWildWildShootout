@@ -9,6 +9,11 @@ TagManager:
   - BulletKillZone
   - Bullet
   - EnemySpawn
+  - EnemySpawn1
+  - EnemySpawn2
+  - EnemySpawn3
+  - Girl
+  - Win
   layers:
   - Default
   - TransparentFX

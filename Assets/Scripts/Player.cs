@@ -18,7 +18,11 @@ public class Player : MonoBehaviour
 	[SerializeField]private GameObject Enemy9;
 	[SerializeField]private GameObject Enemy10;
 	[SerializeField]private GameObject Enemy11;
+	[SerializeField]private GameObject Enemy12;
+	[SerializeField]private GameObject Enemy13;
+	[SerializeField]private GameObject Enemy14;
 	[SerializeField]private Animator Anim = null;
+	[SerializeField]private GameObject WinText;
 	public int kills = 0;
 	public Camera mainCamera;
 	public GameObject hitImage;
@@ -27,7 +31,7 @@ public class Player : MonoBehaviour
 	public static bool canShoot = true;
 	public GameObject guiUpdater;
 	public GameObject guiUpdater2;
-
+	private bool canWin = false;
 
 	void Start()
 	{
@@ -41,6 +45,9 @@ public class Player : MonoBehaviour
 		Enemy9 = GameObject.Find ("Enemy9");
 		Enemy10 = GameObject.Find ("Enemy10");
 		Enemy11 = GameObject.Find ("Enemy11");
+		Enemy12 = GameObject.Find ("Enemy12");
+		Enemy13 = GameObject.Find ("Enemy13");
+		Enemy14 = GameObject.Find ("Enemy14");
 		Enemy2.SetActive (false);
 		Enemy3.SetActive (false);
 		Enemy4.SetActive (false);
@@ -51,6 +58,12 @@ public class Player : MonoBehaviour
 		Enemy9.SetActive (false);
 		Enemy10.SetActive (false);
 		Enemy11.SetActive (false);
+		Enemy12.SetActive (false);
+		Enemy13.SetActive (false);
+		Enemy14.SetActive (false);
+
+		WinText = GameObject.Find ("WinText");
+		WinText.SetActive (false);
 		guiUpdater = GameObject.Find ("ShotText");
 		guiUpdater2 = GameObject.Find ("HealthText");
 		Enemy = GameObject.Find ("Enemy");
@@ -86,6 +99,14 @@ public class Player : MonoBehaviour
 			}
 				
 		}
+		if (canWin)
+		{
+			if (Input.GetKey (KeyCode.E)) 
+			{
+				Application.LoadLevel("WinScene");
+			}
+		}
+
 		if (shots >= 1) 
 		{
 			canShoot = true;
@@ -204,6 +225,39 @@ public class Player : MonoBehaviour
 			Enemy11.SetActive (true);
 
 		}
+		if (other.tag == "EnemySpawn1")
+		{
+			if(kills == 11)
+			{
+				print ("Enemy12");
+				Enemy12.SetActive(true);
+			}
+
+		}
+		if (other.tag == "EnemySpawn2")
+		{
+			if(kills == 12)
+			{
+				print ("Enemy13");
+				Enemy13.SetActive(true);
+			}
+			
+		}
+		if (other.tag == "EnemySpawn3")
+		{
+			if(kills == 13)
+			{
+				print ("Enemy14");
+				Enemy14.SetActive(true);
+			}
+			
+		}
+		if (other.tag == "Win") 
+		{
+			WinText.SetActive(true);
+			canWin = true;
+		}
+
 	}
 	void Move()
 	{
@@ -223,6 +277,21 @@ public class Player : MonoBehaviour
 		if (kills == 11) 
 		{
 			Anim.SetBool("Walk3",true);
+			Anim.StopPlayback();
+		}
+		if (kills == 12) 
+		{
+			Anim.SetBool("Walk4",true);
+			Anim.StopPlayback();
+		}
+		if (kills == 13) 
+		{
+			Anim.SetBool("Walk5",true);
+			Anim.StopPlayback();
+		}
+		if (kills == 14) 
+		{
+			Anim.SetBool("Walk6",true);
 			Anim.StopPlayback();
 		}
 	}
