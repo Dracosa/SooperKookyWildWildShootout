@@ -1,11 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GunAnim.cs">
     <Files>
-      <File FileName="Assets\Scripts\EnemyBullet.cs" Line="33" Column="1" />
-      <File FileName="Assets\Scripts\Player.cs" Line="257" Column="1" />
-      <File FileName="Assets\Scripts\Enemy.cs" Line="68" Column="1" />
-      <File FileName="Assets\Scripts\GUIUpdater.cs" Line="46" Column="1" />
+      <File FileName="Assets\Scripts\YouGotHit.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Player.cs" Line="143" Column="35" />
+      <File FileName="Assets\Scripts\EnemyBullet.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Enemy.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GUIUpdater.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\UIScale.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GunAnim.cs" Line="24" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

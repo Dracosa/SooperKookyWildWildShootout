@@ -21,8 +21,32 @@ public class Player : MonoBehaviour
 	[SerializeField]private GameObject Enemy12;
 	[SerializeField]private GameObject Enemy13;
 	[SerializeField]private GameObject Enemy14;
+	[SerializeField]private GameObject Enemy15;
 	[SerializeField]private Animator Anim = null;
 	[SerializeField]private GameObject WinText;
+	private GameObject QuickText;
+
+	private GameObject Health_Backboard;
+	private GameObject Health_WholeHeart1;
+	private GameObject Health_WholeHeart2;
+	private GameObject Health_WholeHeart3;
+	private GameObject Health_WholeHeart4;
+	private GameObject Health_WholeHeart5;
+	private GameObject Health_HalfHeart1;
+	private GameObject Health_HalfHeart2;
+	private GameObject Health_HalfHeart3;
+	private GameObject Health_HalfHeart4;
+	private GameObject Health_HalfHeart5;
+
+	private GameObject Leather_Ammo_Pouch;
+	private GameObject Bullet1;
+	private GameObject Bullet2;
+	private GameObject Bullet3;
+	private GameObject Bullet4;
+	private GameObject Bullet5;
+	private GameObject Bullet6;
+
+
 	public int kills = 0;
 	public Camera mainCamera;
 	public GameObject hitImage;
@@ -48,6 +72,7 @@ public class Player : MonoBehaviour
 		Enemy12 = GameObject.Find ("Enemy12");
 		Enemy13 = GameObject.Find ("Enemy13");
 		Enemy14 = GameObject.Find ("Enemy14");
+		Enemy15 = GameObject.Find ("Enemy15");
 		Enemy2.SetActive (false);
 		Enemy3.SetActive (false);
 		Enemy4.SetActive (false);
@@ -61,8 +86,36 @@ public class Player : MonoBehaviour
 		Enemy12.SetActive (false);
 		Enemy13.SetActive (false);
 		Enemy14.SetActive (false);
+		Enemy15.SetActive (false);
+
+
+		Health_Backboard = GameObject.Find ("Health_Backboard");
+
+		Health_WholeHeart1 = GameObject.Find ("Health_WholeHeart1");
+		Health_WholeHeart2 = GameObject.Find ("Health_WholeHeart2");
+		Health_WholeHeart3 = GameObject.Find ("Health_WholeHeart3");
+		Health_WholeHeart4 = GameObject.Find ("Health_WholeHeart4");
+		Health_WholeHeart5 = GameObject.Find ("Health_WholeHeart5");
+
+		Health_HalfHeart1 = GameObject.Find ("Health_HalfHeart1");
+		Health_HalfHeart2 = GameObject.Find ("Health_HalfHeart2");
+		Health_HalfHeart3 = GameObject.Find ("Health_HalfHeart3");
+		Health_HalfHeart4 = GameObject.Find ("Health_HalfHeart4");
+		Health_HalfHeart5 = GameObject.Find ("Health_HalfHeart5");
+
+
+		Leather_Ammo_Pouch = GameObject.Find ("Leather_Ammo_Pouch");
+
+		Bullet1 = GameObject.Find ("Bullet1");
+		Bullet2 = GameObject.Find ("Bullet2");
+		Bullet3 = GameObject.Find ("Bullet3");
+		Bullet4 = GameObject.Find ("Bullet4");
+		Bullet5 = GameObject.Find ("Bullet5");
+		Bullet6 = GameObject.Find ("Bullet6");
 
 		WinText = GameObject.Find ("WinText");
+		QuickText = GameObject.Find ("QuickText");
+		QuickText.SetActive (false);
 		WinText.SetActive (false);
 		guiUpdater = GameObject.Find ("ShotText");
 		guiUpdater2 = GameObject.Find ("HealthText");
@@ -115,9 +168,11 @@ public class Player : MonoBehaviour
 		{
 			canShoot = false;
 		}
-		Crouch ();
-		EnemyCount ();
-		Move ();
+		Crouch();
+		EnemyCount();
+		Move();
+		ShotCount();
+		HealthCount();
 	}
 	void Shoot()
 	{
@@ -176,6 +231,8 @@ public class Player : MonoBehaviour
 			canShoot = false;
 			canReload = true;
 			this.transform.localScale = new Vector3 (5f, 2.5f, 5f);
+			Health_Backboard.transform.localScale = new Vector3(0.08f, 0.08f, 0.08f);
+
 
 
 		} 
@@ -213,7 +270,7 @@ public class Player : MonoBehaviour
 			updater2.UpdateHealth(health);
 			if(health <=0)
 			{
-				Destroy(this.gameObject);
+				Destroy(this.gameObject,1);
 				Application.LoadLevel("GameOver");
 			}
 		}
@@ -245,12 +302,21 @@ public class Player : MonoBehaviour
 		}
 		if (other.tag == "EnemySpawn3")
 		{
-			if(kills == 13)
+			if(kills == 14)
 			{
 				print ("Enemy14");
 				Enemy14.SetActive(true);
+
 			}
 			
+		}
+		if (other.tag == "EnemySpawn4") 
+		{
+			if(kills == 13)
+			{
+				QuickText.SetActive (true);
+				Enemy15.SetActive(true);
+			}
 		}
 		if (other.tag == "Win") 
 		{
@@ -289,11 +355,133 @@ public class Player : MonoBehaviour
 			Anim.SetBool("Walk5",true);
 			Anim.StopPlayback();
 		}
-		if (kills == 14) 
+		if (kills == 15) 
 		{
 			Anim.SetBool("Walk6",true);
 			Anim.StopPlayback();
 		}
 	}
+
+	private void ShotCount()
+	{
+		if (shots == 6) 
+		{
+			Bullet1.SetActive(true);
+			Bullet2.SetActive(true);
+			Bullet3.SetActive(true);
+			Bullet4.SetActive(true);
+			Bullet5.SetActive(true);
+			Bullet6.SetActive(true);
+		}
+		if (shots == 5)
+		{
+			Bullet1.SetActive(false);
+			Bullet2.SetActive(true);
+			Bullet3.SetActive(true);
+			Bullet4.SetActive(true);
+			Bullet5.SetActive(true);
+			Bullet6.SetActive(true);
+		}
+		if (shots == 4)
+		{
+			Bullet1.SetActive(false);
+			Bullet2.SetActive(false);
+			Bullet3.SetActive(true);
+			Bullet4.SetActive(true);
+			Bullet5.SetActive(true);
+			Bullet6.SetActive(true);
+		}
+		if (shots == 3)
+		{
+			Bullet1.SetActive(false);
+			Bullet2.SetActive(false);
+			Bullet3.SetActive(false);
+			Bullet4.SetActive(true);
+			Bullet5.SetActive(true);
+			Bullet6.SetActive(true);
+		}
+		if (shots == 2)
+		{
+			Bullet1.SetActive(false);
+			Bullet2.SetActive(false);
+			Bullet3.SetActive(false);
+			Bullet4.SetActive(false);
+			Bullet5.SetActive(true);
+			Bullet6.SetActive(true);
+		}
+		if (shots == 1)
+		{
+			Bullet1.SetActive(false);
+			Bullet2.SetActive(false);
+			Bullet3.SetActive(false);
+			Bullet4.SetActive(false);
+			Bullet5.SetActive(false);
+			Bullet6.SetActive(true);
+		}
+		if (shots == 0)
+		{
+			Bullet1.SetActive(false);
+			Bullet2.SetActive(false);
+			Bullet3.SetActive(false);
+			Bullet4.SetActive(false);
+			Bullet5.SetActive(false);
+			Bullet6.SetActive(false);
+		}
+
+
+	}
+	private void HealthCount()
+	{
+		if (health == 5)
+		{
+			Health_WholeHeart1.SetActive(true);
+			Health_WholeHeart2.SetActive(true);
+			Health_WholeHeart3.SetActive(true);
+			Health_WholeHeart4.SetActive(true);
+			Health_WholeHeart5.SetActive(true);
+		}
+		if (health == 4)
+		{
+			Health_WholeHeart1.SetActive(false);
+			Health_WholeHeart2.SetActive(true);
+			Health_WholeHeart3.SetActive(true);
+			Health_WholeHeart4.SetActive(true);
+			Health_WholeHeart5.SetActive(true);
+		}
+		if (health == 3)
+		{
+			Health_WholeHeart1.SetActive(false);
+			Health_WholeHeart2.SetActive(false);
+			Health_WholeHeart3.SetActive(true);
+			Health_WholeHeart4.SetActive(true);
+			Health_WholeHeart5.SetActive(true);
+		}
+		if (health == 2)
+		{
+			Health_WholeHeart1.SetActive(false);
+			Health_WholeHeart2.SetActive(false);
+			Health_WholeHeart3.SetActive(false);
+			Health_WholeHeart4.SetActive(true);
+			Health_WholeHeart5.SetActive(true);
+		}
+		if (health == 1)
+		{
+			Health_WholeHeart1.SetActive(false);
+			Health_WholeHeart2.SetActive(false);
+			Health_WholeHeart3.SetActive(false);
+			Health_WholeHeart4.SetActive(false);
+			Health_WholeHeart5.SetActive(true);
+		}
+		if (health == 0)
+		{
+			Health_WholeHeart1.SetActive(false);
+			Health_WholeHeart2.SetActive(false);
+			Health_WholeHeart3.SetActive(false);
+			Health_WholeHeart4.SetActive(false);
+			Health_WholeHeart5.SetActive(false);
+		}
+
+	}
+
 
 }

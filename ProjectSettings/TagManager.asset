@@ -14,6 +14,7 @@ TagManager:
   - EnemySpawn3
   - Girl
   - Win
+  - EnemySpawn4
   layers:
   - Default
   - TransparentFX
